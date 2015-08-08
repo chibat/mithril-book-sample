@@ -12,10 +12,10 @@ class Todo {
 
 // ビュー・モデル
 // 作成可能か判定するロジック
-module vm {
-    export var list = m.prop<Todo[]>([]);
-    export var description = m.prop("");
-    export function add() {
+var vm = {
+    list: m.prop<Todo[]>([]),
+    description: m.prop(""),
+    add: () => {
         if (vm.description()) {
             vm.list().push(new Todo({description: vm.description()}));
             vm.description("");
