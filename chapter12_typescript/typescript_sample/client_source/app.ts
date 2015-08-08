@@ -1,25 +1,20 @@
-/// <reference path="../typings/mithril/mithril.d.ts" />
+/// <reference path="mithril.d.ts" />
 
 // モデルクラスTodo: 2つプロパティがある
 class Todo {
-    description : _mithril.MithrilProperty<string>;
-    done : _mithril.MithrilProperty<boolean>;
+    description = m.prop<string>(null);
+    done = m.prop(false);
    
     constructor(data : any) {
-        this.description = m.prop(data.description);
-        this.done = m.prop(false);
+        this.description(data.description);
     }
 };
 
 // ビュー・モデル
 // 作成可能か判定するロジック
 module vm {
-    export var list: _mithril.MithrilProperty<Todo[]>;
-    export var description: _mithril.MithrilProperty<string>;
-    export function init() {
-        vm.list = m.prop([]);
-        vm.description = m.prop("");
-    }
+    export var list = m.prop<Todo[]>([]);
+    export var description = m.prop("");
     export function add() {
         if (vm.description()) {
             vm.list().push(new Todo({description: vm.description()}));
@@ -30,7 +25,6 @@ module vm {
 
 // コントローラ
 function controller() {
-    vm.init();
 }
 
 // ビュー
