@@ -4,8 +4,8 @@
 class Todo {
     description = m.prop<string>(null);
     done = m.prop(false);
-    constructor(data : any) {
-        this.description(data.description);
+    constructor(description : string) {
+        this.description(description);
     }
 };
 
@@ -15,7 +15,7 @@ class Controller {
     description = m.prop("");
     add = () => {
         if (this.description()) {
-            this.list().push(new Todo({description: this.description()}));
+            this.list().push(new Todo(this.description()));
             this.description("");
         }
     }
